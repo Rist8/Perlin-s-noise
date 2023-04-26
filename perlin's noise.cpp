@@ -2,10 +2,6 @@
 #include <vector>
 
 // THIS CLASS IS A TRANSLATION TO C++11 FROM THE REFERENCE
-// JAVA IMPLEMENTATION OF THE IMPROVED PERLIN FUNCTION (see http://mrl.nyu.edu/~perlin/noise/)
-// THE ORIGINAL JAVA IMPLEMENTATION IS COPYRIGHT 2002 KEN PERLIN
-
-// I ADDED AN EXTRA METHOD THAT GENERATES A NEW PERMUTATION VECTOR (THIS IS NOT PRESENT IN THE ORIGINAL IMPLEMENTATION)
 
 #ifndef PERLINNOISE_H
 #define PERLINNOISE_H
@@ -31,12 +27,6 @@ private:
 #include <random>
 #include <algorithm>
 #include <numeric>
-
-// THIS IS A DIRECT TRANSLATION TO C++11 FROM THE REFERENCE
-// JAVA IMPLEMENTATION OF THE IMPROVED PERLIN FUNCTION (see http://mrl.nyu.edu/~perlin/noise/)
-// THE ORIGINAL JAVA IMPLEMENTATION IS COPYRIGHT 2002 KEN PERLIN
-
-// I ADDED AN EXTRA METHOD THAT GENERATES A NEW PERMUTATION VECTOR (THIS IS NOT PRESENT IN THE ORIGINAL IMPLEMENTATION)
 
 // Initialize with the reference values for the permutation vector
 PerlinNoise::PerlinNoise() {
@@ -294,7 +284,7 @@ void ppm::write(const std::string& fname) {
 std::string KeyGen(unsigned long long int n, std::string seed)
 {
 	std::string key;
-	int rand = n % 320000 + n % 623;//just for more random key
+	int rand = n % 320000 + n % 623;//just for more "random" key
 	n /= 20;//and this too
 	for (int i = 0; i < 6; ++i)
 	{
@@ -313,28 +303,28 @@ int main() {
 	bool wood = 1, woodl = 0, ch = 1, color = 1;
 	setlocale(LC_ALL, "Russian");
 	while (!woodl) {
-		std::cout << "Создать изображение по seedу(1) или по ID(0)?\n";
+		std::cout << "Create image using seed(1) or ID(0)?\n";
 		std::cin >> ch;
 		system("cls");
 		if (ch)
-			std::cout << "Введите seed...\n";
+			std::cout << "Enter the seed...\n";
 		else
-			std::cout << "Введите ID...\n";
+			std::cout << "Enter ID...\n";
 		std::getline(std::cin, seed, '\n');
 		std::getline(std::cin, seed, '\n');
 		system("cls");
-		std::cout << "В каком виде вывести шум Перлина, в виде древесной структуры(0) или в стандартном виде(1)?...\n";
+		std::cout << "Create Perlin's noise in treelike format(0) or in standart(1)?...\n";
 		std::cin >> wood;
 		system("cls");
-		std::cout << "В каком формате вывести шум Перлина, в цветном(0) или в черно-белом(1)?...\n";
+		std::cout << "Create Perlin's noise colorful(0) or black-white(1)?...\n";
 		std::cin >> color;
 		system("cls");
-		std::cout << "Введите свое название файла или ничего для использования стандартного(стандартным является perlinNoise) в который будет сохранен шум...\n";
+		std::cout << "Enter custom filename or press "Enter" to use standart(perlinNoise)...\n";
 		std::getline(std::cin, filename, '\n');
 		std::getline(std::cin, filename, '\n');
 		system("cls");
 		unsigned short int choice = 0;
-		std::cout << "Выберите одно из стандартных(1 - 9) или задайте своё(0) разрешение создаваемого изображения:\n1) 640 x 480\n2) 800 x 480\n3) 800 x 600\n4) 1024 x 768\n5) 1280 x 768\n6) 1280 x 1024\n7) 1440 x 1080\n8) 1920 x 1080\n9) 3840 x 2160\n";
+		std::cout << "Choose from standart values(1 - 9) or enter custom(0) resolution of created image:\n1) 640 x 480\n2) 800 x 480\n3) 800 x 600\n4) 1024 x 768\n5) 1280 x 768\n6) 1280 x 1024\n7) 1440 x 1080\n8) 1920 x 1080\n9) 3840 x 2160\n";
 		std::cin >> choice;
 		system("cls");
 		switch (choice)
@@ -348,14 +338,18 @@ int main() {
 		case 7: width = 1440, height = 1080; break;
 		case 8: width = 1920, height = 1080; break;
 		case 9: width = 3840, height = 2160; break;
-		case 0: std::cout << "Рекомендуется использовать значения в пределах: ширина(1 - 15360), высота(1 - 8640).\nВведите ширину...\n"; std::cin >> width; system("cls"); std::cout << "Рекомендуется использовать значения в пределах: ширина(1 - 15360), высота(1 - 8640).\nВведите высоту...\n"; std::cin >> height; break;
+		case 0: std::cout << "Recommended values: width(1 - 15360), height(1 - 8640).\nEnter the width...\n";
+			std::cin >> width; system("cls"); 
+			std::cout << "Recommended values: width(1 - 15360), height(1 - 8640).\nEnter the height...\n";
+			std::cin >> height;
+			break;
 		}
 		system("cls");
-		std::cout << "Выбранные вами параметры:\n" << ((ch) ? "Seed: " : "ID: ") << seed << ((!wood) ? "\nВывод в виде древесной структуры.\n" : "\nВывод в стандартном виде.\n") << ((!color) ? "Вывод в цветном формате.\n" : "Вывод в черно-белом формате.\n") << "Название файла: " << filename << "\nВыбранное разрешение: " << width << " x " << height << "\n\nСоздать изображение с выбранными параметрами(1) или перевыбрать параметры(0)?\n";
+		std::cout << "Chosen parameters:\n" << ((ch) ? "Seed: " : "ID: ") << seed << ((!wood) ? "\nTreelike format.\n" : "\nStandart format.\n") << ((!color) ? "Colorful.\n" : "Black-white.\n") << "Filename: " << filename << "\nResolution: " << width << " x " << height << "\n\nCreate with current parameters(1) or rechoose(0)?\n";
 		std::cin >> woodl;
 		system("cls");
 	}
-	std::cout << "Генерация изображения...";
+	std::cout << "Generating image...";
 	if (filename == "")
 		filename = "perlinNoise";
 	filename += ".ppm";
@@ -417,9 +411,9 @@ int main() {
 	}
 	// Save the image in a binary PPM file
 	system("cls");
-	std::cout << "Запись изображения в файл...";
+	std::cout << "Writing in file...";
 	image.write(filename);
 	system("cls");
-	std::cout << "Изображение успешно записано.\nID изображения: " << seed << '\n';
+	std::cout << "Image successfully saved.\nImage ID: " << seed << '\n';
 	system("pause");
 }

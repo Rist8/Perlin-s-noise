@@ -345,7 +345,7 @@ int main() {
 			break;
 		}
 		system("cls");
-		std::cout << "Chosen parameters:\n" << ((ch) ? "Seed: " : "ID: ") << seed << ((!wood) ? "\nTreelike format.\n" : "\nStandart format.\n") << ((!color) ? "Colorful.\n" : "Black-white.\n") << "Filename: " << filename << "\nResolution: " << width << " x " << height << "\n\nCreate with current parameters(1) or rechoose(0)?\n";
+		std::cout << "Chosen parameters:\n" << ((ch) ? "Seed: " : "ID: ") << seed << ((!wood) ? "\nWood structured format.\n" : "\nStandard format.\n") << ((!color) ? "Colorful.\n" : "Black-white.\n") << "Filename: " << filename << "\nResolution: " << width << " x " << height << "\n\nCreate with current parameters(1) or rechoose(0)?\n";
 		std::cin >> woodl;
 		system("cls");
 	}
